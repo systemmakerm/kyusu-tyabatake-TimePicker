@@ -1,0 +1,40 @@
+<div data-role="page" data-theme="b">
+
+  <div data-role="header" data-position="inline">
+    <h1>タイムピッカー機能</h1>
+  </div>
+
+  <div data-role="content">
+    <% if platform == 'apple' %>
+       <div class="ui-grid-a">
+         <div class="ui-block-a">
+           <label for="time_field">Ajaxによる指定:</label>
+           <div><span class="time_field"></span></div>
+         </div>
+         <div class="ui-block-b">
+           <input type="button" id="ajax_button" value="時間を指定" onClick="ChooseAjax();" />
+         </div>
+       </div>
+    <% end %>
+    <a href="<%= url_for :action => :choose, :query => {:flg => "0"} %>" data-role="button">日付・時間を選択</a>
+    <a href="<%= url_for :action => :choose, :query => {:flg => "1"} %>" data-role="button">日付を選択</a>
+    <a href="<%= url_for :action => :choose, :query => {:flg => "2"} %>" data-role="button">時間を選択</a>
+    <a href="<%= url_for :action => :choose_range, :query => {:format => "0"} %>" data-role="button">日付・時間を選択(1週間後まで)</a>
+    <a href="<%= url_for :action => :choose_range, :query => {:format => "1"} %>" data-role="button">日付を選択(1週間後まで)</a>
+    <a href="<%= url_for :action => :choose_range, :query => {:format => "2"} %>" data-role="button">時間を選択(1週間後まで)</a>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  function ChooseAjax(){
+    $.get('<%= url_for(:action => :choose_ajax) %>');
+    return false
+  }
+
+
+  function SetTime(time){
+    //document.getElementById("time_field").value=time;
+    $('span.time_field').html(time);
+  }
+</script>
