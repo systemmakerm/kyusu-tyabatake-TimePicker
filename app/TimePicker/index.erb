@@ -28,24 +28,25 @@
     <a href="<%= url_for :action => :choose_range, :query => {:format => "2"} %>" data-role="button">時間を選択(1週間後まで)</a>
   </div>
 
+  <script type="text/javascript">
+    function ChooseAjax(){
+      $.get('<%= url_for(:action => :choose_ajax) %>');
+      return false
+    }
+
+    function Call_Picker(){
+      $.get('<%= url_for(:action => :choose) %>', {flg: 0})
+      return false
+    }
+
+    function Time_Picker_Set(time){
+      document.getElementById("time_text").value = time
+    }
+
+    function SetTime(time){
+      $('span.time_field').html(time);
+     }
+  </script>
+
 </div>
 
-<script type="text/javascript">
-  function ChooseAjax(){
-    $.get('<%= url_for(:action => :choose_ajax) %>');
-    return false
-  }
-
-  function Call_Picker(){
-      $.get('<%= url_for(:action => :choose) %>', {flg: 0})
-    return false
-  }
-
-  function Time_Picker_Set(time){
-      document.getElementById("time_text").value = time
-  }
-
-  function SetTime(time){
-    $('span.time_field').html(time);
-  }
-</script>
